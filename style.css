@@ -130,7 +130,7 @@ header {
     font-size: 16px;
 }
 .footer {
-    background: #f8f9fa;
+    background: white;
     padding: 50px 0;
     margin-top: 50px;
 }
@@ -138,10 +138,13 @@ header {
 .newsletter {
     text-align: center;
     margin-bottom: 50px;
+    background-color: #EFF2F4;
+    height: 190px;
 }
 
 .newsletter h2 {
-    margin-bottom: 10px;
+    
+    margin-bottom: 20px;
 }
 .icon-input {
     background :url(./Images/email.png) no-repeat left 10px center;
@@ -157,8 +160,8 @@ header {
 }
 
 .newsletter p {
-
-    margin-bottom: 20px;
+ margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .newsletter form {
@@ -232,6 +235,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #DEE2E7;
+    height: 68px;
 }
 
 .social-icons {

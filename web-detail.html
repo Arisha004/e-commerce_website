@@ -1,0 +1,2414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+
+    <style>
+  a{
+    text-decoration: none;
+  }
+      /* Main container */
+      .product-detail {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        align-items: stretch;
+      }
+
+     
+      /* Main content */
+      .main-content {
+        align-self: center;
+        display: flex;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 1180px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      @media (max-width: 991px) {
+        .main-content {
+          max-width: 100%;
+        }
+      }
+
+      /* Breadcrumb */
+      .breadcrumb {
+        align-self: start;
+        display: flex;
+        align-items: stretch;
+        gap: 6px;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+        color: #8b96a5;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+      }
+
+      .breadcrumb-item {
+        display: flex;
+        align-items: stretch;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 991px) {
+        .breadcrumb-item {
+          white-space: initial;
+        }
+      }
+
+      .breadcrumb-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        flex-grow: 1;
+      }
+
+      .breadcrumb-arrow {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 20px;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      /* Product detail section */
+      .product-container {
+        border-radius: 6px;
+        border: 1px solid var(--gray-300, #dee2e7);
+        background-color: #fff;
+        margin-top: 20px;
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 19px;
+        padding-top: 20px;
+        padding-bottom: 44px;
+      }
+
+      @media (max-width: 991px) {
+        .product-container {
+          max-width: 100%;
+          padding-right: 20px;
+        }
+      }
+
+      .product-main {
+      }
+
+      @media (max-width: 991px) {
+        .product-main {
+          max-width: 100%;
+        }
+      }
+
+      .product-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      @media (max-width: 991px) {
+        .product-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+      }
+
+      .product-image-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 35%;
+        margin-left: 0px;
+      }
+
+      @media (max-width: 991px) {
+        .product-image-column {
+          width: 100%;
+        }
+      }
+
+      .product-image {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        border-radius: 0px 0px 0px 0px;
+      }
+
+      @media (max-width: 991px) {
+        .product-image {
+          margin-top: 24px;
+        }
+      }
+
+      .product-info-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 39%;
+        margin-left: 20px;
+      }
+
+      @media (max-width: 991px) {
+        .product-info-column {
+          width: 100%;
+        }
+      }
+
+      .product-info {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+      }
+
+      @media (max-width: 991px) {
+        .product-info {
+          max-width: 100%;
+          margin-top: 26px;
+        }
+      }
+
+      .stock-status {
+        display: flex;
+        align-items: stretch;
+        gap: 2px;
+        font-size: 16px;
+        color: #00b517;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+      }
+
+      .stock-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 24px;
+        flex-shrink: 0;
+      }
+
+      .stock-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .product-title {
+        color: #1c1c1c;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+        letter-spacing: -0.2px;
+        margin-top: 5px;
+      }
+
+      .product-ratings {
+        display: flex;
+        margin-top: 9px;
+        align-items: stretch;
+        gap: 24px;
+        font-size: 16px;
+        color: #787a80;
+        font-weight: 400;
+      }
+
+      .rating-stars {
+        align-self: start;
+        display: flex;
+        align-items: stretch;
+        gap: 8px;
+        color: #ff9017;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 991px) {
+        .rating-stars {
+          white-space: initial;
+        }
+      }
+
+      .stars-image {
+        aspect-ratio: 5.32;
+        object-fit: contain;
+        object-position: center;
+        width: 80px;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .rating-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .reviews {
+        display: flex;
+        align-items: stretch;
+        gap: 9px;
+      }
+
+      .reviews-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .reviews-count {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .sold {
+        display: flex;
+        align-items: stretch;
+        gap: 9px;
+      }
+
+      .sold-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .sold-count {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .pricing-tiers {
+        background-color: rgba(255, 240, 223, 1);
+        align-self: stretch;
+        display: flex;
+        margin-top: 11px;
+        padding-left: 16px;
+        padding-right: 80px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        align-items: stretch;
+        gap: 20px;
+        justify-content: space-between;
+      }
+
+      @media (max-width: 991px) {
+        .pricing-tiers {
+          padding-right: 20px;
+        }
+      }
+
+      .tier-1 {
+        align-self: start;
+      }
+
+      .tier-1-price {
+        color: #fa3434;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      @media (max-width: 991px) {
+        .tier-1-price {
+          margin-right: 6px;
+        }
+      }
+
+      .tier-1-quantity {
+        color: #606060;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 13px;
+        font-weight: 400;
+        margin-top: 4px;
+      }
+
+      .tier-2 {
+        display: flex;
+        align-items: stretch;
+        gap: 9px;
+      }
+
+      .tier-divider {
+        border-color: rgba(189, 193, 200, 1);
+        border-style: solid;
+        border-width: 1px;
+        background-color: #bdc1c8;
+        width: 1px;
+        flex-shrink: 0;
+        height: 44px;
+      }
+
+      .tier-2-details {
+        align-self: start;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .tier-2-price {
+        color: #1c1c1c;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 18px;
+        font-weight: 600;
+        align-self: start;
+      }
+
+      .tier-2-quantity {
+        color: #606060;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 13px;
+        font-weight: 400;
+        margin-top: 4px;
+      }
+
+      .tier-3 {
+        display: flex;
+        align-items: stretch;
+        gap: 9px;
+      }
+
+      .tier-3-divider {
+        border-color: rgba(189, 193, 200, 1);
+        border-style: solid;
+        border-width: 1px;
+        background-color: #bdc1c8;
+        width: 1px;
+        flex-shrink: 0;
+        height: 44px;
+      }
+
+      .tier-3-details {
+        align-self: start;
+      }
+
+      .tier-3-price {
+        color: #1c1c1c;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .tier-3-quantity {
+        color: #606060;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 13px;
+        font-weight: 400;
+        margin-top: 4px;
+      }
+
+      @media (max-width: 991px) {
+        .tier-3-quantity {
+          margin-right: 4px;
+        }
+      }
+
+      .price-negotiable {
+        display: flex;
+        margin-top: 21px;
+        width: 223px;
+        max-width: 100%;
+        align-items: stretch;
+        gap: 20px;
+        font-size: 16px;
+        font-weight: 400;
+        justify-content: space-between;
+      }
+
+      .price-label {
+        color: #8b96a5;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .negotiable-text {
+        color: #505050;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .info-divider {
+        border-color: rgba(224, 224, 224, 1);
+        border-style: solid;
+        border-width: 1px;
+        background-color: #e0e0e0;
+        align-self: stretch;
+        margin-top: 15px;
+        flex-shrink: 0;
+        height: 1px;
+      }
+
+      @media (max-width: 991px) {
+        .info-divider {
+          max-width: 100%;
+        }
+      }
+
+      .product-specs {
+        display: flex;
+        margin-top: 16px;
+        width: 255px;
+        max-width: 100%;
+        align-items: stretch;
+        gap: 20px;
+        font-size: 16px;
+        font-weight: 400;
+        justify-content: space-between;
+      }
+
+      .spec-labels {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        color: #8b96a5;
+      }
+
+      .type-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .material-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        align-self: stretch;
+        margin-top: 16px;
+      }
+
+      .design-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        margin-top: 16px;
+      }
+
+      .spec-values {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        color: #505050;
+      }
+
+      .type-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      @media (max-width: 991px) {
+        .type-value {
+          margin-right: 7px;
+        }
+      }
+
+      .material-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        margin-top: 16px;
+      }
+
+      .design-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        align-self: start;
+        margin-top: 16px;
+      }
+
+      .supplier-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 26%;
+        margin-left: 20px;
+      }
+
+      @media (max-width: 991px) {
+        .supplier-column {
+          width: 100%;
+        }
+      }
+
+      .supplier-container {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+      }
+
+      @media (max-width: 991px) {
+        .supplier-container {
+          margin-top: 24px;
+        }
+      }
+
+      .supplier-card {
+        border-radius: 6px;
+        border: 1px solid var(--gray-300, #dee2e7);
+        box-shadow: 0px 1px 2px 0px rgba(56, 56, 56, 0.08);
+        background-color: #fff;
+        display: flex;
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        flex-direction: column;
+        align-items: start;
+        color: #8b96a5;
+        font-weight: 400;
+      }
+
+      .supplier-header {
+        display: flex;
+        align-items: stretch;
+        gap: 11px;
+        color: #1c1c1c;
+        letter-spacing: -0.2px;
+      }
+
+      .supplier-logo {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 48px;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+
+      .supplier-info {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .supplier-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        align-self: start;
+      }
+
+      .supplier-name {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      .supplier-divider {
+        border-color: rgba(224, 224, 224, 1);
+        border-style: solid;
+        border-width: 1px;
+        background-color: #e0e0e0;
+        align-self: stretch;
+        margin-top: 19px;
+        width: 100%;
+        flex-shrink: 0;
+        height: 1px;
+      }
+
+      .supplier-location {
+        display: flex;
+        margin-top: 13px;
+        align-items: stretch;
+        gap: 17px;
+        letter-spacing: -0.2px;
+      }
+
+      .location-icon {
+        aspect-ratio: 1.4;
+        object-fit: contain;
+        object-position: center;
+        width: 21px;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .location-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        flex-basis: auto;
+      }
+
+      .supplier-verified {
+        display: flex;
+        margin-top: 8px;
+        align-items: stretch;
+        gap: 18px;
+        letter-spacing: -0.2px;
+      }
+
+      .verified-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 20px;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .verified-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        flex-basis: auto;
+      }
+
+      .supplier-shipping {
+        display: flex;
+        margin-top: 8px;
+        align-items: stretch;
+        gap: 18px;
+        letter-spacing: -0.2px;
+      }
+
+      .shipping-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 20px;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .shipping-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        flex-basis: auto;
+      }
+
+      .inquiry-button {
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        background: linear-gradient(180deg, #127fff 0%, #0067ff 100%);
+        align-self: stretch;
+        display: flex;
+        margin-top: 28px;
+        min-height: 40px;
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        flex-direction: column;
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+      }
+
+      .inquiry-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        gap: 10px;
+      }
+
+      .profile-button {
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        border: 1px solid var(--gray-300, #dee2e7);
+        background-color: #fff;
+        align-self: stretch;
+        display: flex;
+        margin-top: 8px;
+        min-height: 40px;
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        flex-direction: column;
+        color: #0d6efd;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .profile-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        gap: 10px;
+      }
+
+      .save-later {
+        align-self: center;
+        display: flex;
+        margin-top: 23px;
+        width: 133px;
+        max-width: 100%;
+        align-items: stretch;
+        gap: 8px;
+        color: #0d6efd;
+        font-weight: 500;
+        letter-spacing: -0.1px;
+      }
+
+      .save-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 24px;
+        flex-shrink: 0;
+      }
+
+      .save-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 96px;
+      }
+
+      /* Product thumbnails */
+      .product-thumbnails {
+        margin-top: 12px;
+        width: 832px;
+        max-width: 100%;
+      }
+
+      .thumbnails-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      @media (max-width: 991px) {
+        .thumbnails-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+      }
+
+      .thumbnails-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 50%;
+        margin-left: 0px;
+      }
+
+      @media (max-width: 991px) {
+        .thumbnails-column {
+          width: 100%;
+        }
+      }
+
+      .thumbnail-list {
+        display: flex;
+        margin-top: 8px;
+        align-items: stretch;
+        gap: 9px;
+      }
+
+      @media (max-width: 991px) {
+        .thumbnail-list {
+          margin-top: 29px;
+        }
+      }
+
+      .thumbnail {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 56px;
+        border-radius: 0px 0px 0px 0px;
+        flex-shrink: 0;
+      }
+
+      .specs-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 50%;
+        margin-left: 20px;
+      }
+
+      @media (max-width: 991px) {
+        .specs-column {
+          width: 100%;
+        }
+      }
+
+      .specs-container {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      @media (max-width: 991px) {
+        .specs-container {
+          max-width: 100%;
+          margin-top: 21px;
+        }
+      }
+
+      .specs-details {
+        align-self: start;
+        display: flex;
+        align-items: stretch;
+        gap: 27px;
+      }
+
+      .specs-labels {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        color: #8b96a5;
+      }
+
+      .customization-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        align-self: stretch;
+      }
+
+      .protection-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        margin-top: 35px;
+      }
+
+      .warranty-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        margin-top: 16px;
+      }
+
+      .specs-values {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        color: #505050;
+      }
+
+      .customization-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        align-self: stretch;
+      }
+
+      .protection-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        margin-top: 16px;
+      }
+
+      .warranty-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        margin-top: 16px;
+      }
+
+      .specs-divider {
+        border-color: rgba(224, 224, 224, 1);
+        border-style: solid;
+        border-width: 1px;
+        background-color: #e0e0e0;
+        margin-top: 15px;
+        flex-shrink: 0;
+        height: 1px;
+      }
+
+      @media (max-width: 991px) {
+        .specs-divider {
+          max-width: 100%;
+        }
+      }
+
+      /* Product description tabs */
+      .product-tabs {
+        margin-top: 20px;
+      }
+
+      @media (max-width: 991px) {
+        .product-tabs {
+          max-width: 100%;
+        }
+      }
+
+      .tabs-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      @media (max-width: 991px) {
+        .tabs-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+      }
+
+      .tabs-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 76%;
+        margin-left: 0px;
+      }
+
+      @media (max-width: 991px) {
+        .tabs-column {
+          width: 100%;
+        }
+      }
+
+      .tabs-container {
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 1px 3px rgba(56, 56, 56, 0.1);
+        border-color: rgba(222, 226, 231, 1);
+        border-style: solid;
+        border-width: 1px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-bottom: 29px;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+      }
+
+      @media (max-width: 991px) {
+        .tabs-container {
+          max-width: 100%;
+          margin-top: 20px;
+        }
+      }
+
+      .tabs-header {
+        align-items: stretch;
+        border-bottom: 1px solid var(--gray-300, #dee2e7);
+        display: flex;
+        padding-left: 8px;
+        padding-right: 80px;
+        color: #8b96a5;
+        font-weight: 500;
+        text-align: center;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 991px) {
+        .tabs-header {
+          padding-right: 20px;
+        }
+      }
+
+      .tab-active {
+        border-bottom: 2px solid var(--primary, #0d6efd);
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        color: #0d6efd;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 991px) {
+        .tab-active {
+          white-space: initial;
+        }
+      }
+
+      .tab {
+        border-bottom: 1px solid var(--gray-300, #dee2e7);
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 991px) {
+        .tab {
+          white-space: initial;
+        }
+      }
+
+      .tab-shipping {
+        border-bottom: 1px solid var(--gray-300, #dee2e7);
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 991px) {
+        .tab-shipping {
+          white-space: initial;
+        }
+      }
+
+      .tab-seller {
+        border-bottom: 1px solid var(--gray-300, #dee2e7);
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      @media (max-width: 991px) {
+        .tab-seller {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      .tab-content {
+        display: flex;
+        margin-top: 18px;
+        width: 100%;
+        padding-left: 19px;
+        padding-right: 62px;
+        flex-direction: column;
+        align-items: start;
+        color: #505050;
+        font-weight: 400;
+      }
+
+      @media (max-width: 991px) {
+        .tab-content {
+          max-width: 100%;
+          padding-right: 20px;
+        }
+      }
+
+      .description-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        line-height: 24px;
+        letter-spacing: -0.2px;
+        align-self: stretch;
+      }
+
+      @media (max-width: 991px) {
+        .description-text {
+          max-width: 100%;
+        }
+      }
+
+      .specs-table {
+        border-color: rgba(224, 231, 233, 1);
+        border-style: solid;
+        border-width: 1px;
+        margin-top: 23px;
+        width: 567px;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .specs-row {
+        display: flex;
+        width: 100%;
+        padding-right: 41px;
+        align-items: stretch;
+        white-space: nowrap;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 991px) {
+        .specs-row {
+          max-width: 100%;
+          padding-right: 20px;
+          white-space: initial;
+        }
+      }
+
+      .specs-label {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        background-color: #eff2f4;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+      }
+
+      @media (max-width: 991px) {
+        .specs-label {
+          padding-right: 20px;
+          white-space: initial;
+        }
+      }
+
+      .specs-value-container {
+        background-color: rgba(255, 255, 255, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        letter-spacing: -0.2px;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0;
+        width: fit-content;
+      }
+
+      @media (max-width: 991px) {
+        .specs-value-container {
+          white-space: initial;
+        }
+      }
+
+      .specs-border {
+        border-color: rgba(224, 231, 233, 1);
+        border-style: solid;
+        border-width: 1px;
+        z-index: 10;
+        margin-right: -41px;
+        flex-shrink: 0;
+        height: 1px;
+      }
+
+      @media (max-width: 991px) {
+        .specs-border {
+          max-width: 100%;
+        }
+      }
+
+      .specs-value-wrapper {
+        display: flex;
+        align-items: stretch;
+        gap: 9px;
+      }
+
+      @media (max-width: 991px) {
+        .specs-value-wrapper {
+          white-space: initial;
+        }
+      }
+
+      .specs-divider-vertical {
+        border-color: rgba(224, 231, 233, 1);
+        border-style: solid;
+        border-width: 1px;
+        width: 1px;
+        flex-shrink: 0;
+        height: 36px;
+      }
+
+      .specs-value {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .feature-list {
+        display: flex;
+        margin-top: 26px;
+        align-items: stretch;
+        gap: 7px;
+        letter-spacing: -0.2px;
+      }
+
+      .feature-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 20px;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .feature-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        flex-basis: auto;
+      }
+
+      .related-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 24%;
+        margin-left: 20px;
+      }
+
+      @media (max-width: 991px) {
+        .related-column {
+          width: 100%;
+        }
+      }
+
+      .related-container {
+        border-radius: 6px;
+        border: 1px solid var(--gray-300, #dee2e7);
+        background-color: #fff;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 20px;
+        padding-bottom: 36px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      @media (max-width: 991px) {
+        .related-container {
+          margin-top: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      .related-title {
+        color: #1c1c1c;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        align-self: start;
+      }
+
+      .related-products {
+        display: flex;
+        margin-top: 14px;
+        align-items: stretch;
+        gap: 11px;
+      }
+
+      .related-images {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .related-image {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 80px;
+        border-radius: 0px 0px 0px 0px;
+      }
+
+      .related-image-2 {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 80px;
+        border-radius: 0px 0px 0px 0px;
+        margin-top: 16px;
+      }
+
+      .related-details {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+        color: #1c1c1c;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+      }
+
+      .related-product-title {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        line-height: 24px;
+      }
+
+      .related-price {
+        color: #8b96a5;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+      }
+
+      /* Related products section */
+      .related-products-section {
+        border-radius: 6px;
+        border: 1px solid var(--gray-300, #dee2e7);
+        background-color: #fff;
+        display: flex;
+        margin-top: 20px;
+        width: 100%;
+        padding-left: 22px;
+        padding-right: 22px;
+        padding-top: 20px;
+        padding-bottom: 35px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      @media (max-width: 991px) {
+        .related-products-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      .related-section-title {
+        color: #1c1c1c;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: -0.2px;
+        align-self: start;
+      }
+
+      .related-products-grid {
+        display: flex;
+        margin-top: 15px;
+        align-items: stretch;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .product-card {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 172px;
+        max-width: 100%;
+      }
+
+      .product-image-container {
+        border-radius: 6px;
+        background-color: rgba(238, 238, 238, 1);
+        align-self: stretch;
+        display: flex;
+        padding-left: 7px;
+        padding-right: 7px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 172px;
+      }
+
+      .product-image-wrapper {
+        background-blend-mode: multiply;
+        background-color: rgba(255, 255, 255, 1);
+        display: flex;
+        padding-left: 12px;
+        padding-right: 12px;
+        flex-direction: column;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        width: 155px;
+        height: 155px;
+      }
+
+      .product-card-image {
+        aspect-ratio: 0.99;
+        object-fit: contain;
+        object-position: center;
+        width: 131px;
+      }
+
+      .product-card-title {
+        color: #505050;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 14px;
+      }
+
+      .product-card-price {
+        color: #8b96a5;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 9px;
+      }
+
+      /* Discount banner */
+      .discount-banner {
+        display: flex;
+        margin-top: 20px;
+        align-items: stretch;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-radius: 8px;
+        background-color: rgba(0, 90, 222, 1);
+        padding-right: 45px;
+        font-family:
+          Inter,
+          -apple-system,
+          Roboto,
+          Helvetica,
+          sans-serif;
+      }
+
+      @media (max-width: 991px) {
+        .discount-banner {
+          max-width: 100%;
+          padding-right: 20px;
+        }
+      }
+
+      .banner-content {
+        display: flex;
+        flex-direction: column;
+        border-radius: 0px 0px 0px 0px;
+        position: relative;
+        min-height: 120px;
+        padding-left: 30px;
+        padding-right: 80px;
+        padding-top: 33px;
+        padding-bottom: 33px;
+        align-items: start;
+      }
+
+      @media (max-width: 991px) {
+        .banner-content {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      .banner-bg {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .banner-title {
+        position: relative;
+        color: #fff;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.2px;
+      }
+
+      @media (max-width: 991px) {
+        .banner-title {
+          max-width: 100%;
+        }
+      }
+
+      .banner-description {
+        position: relative;
+        color: #fff;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 0.7;
+      }
+
+      .shop-now-button {
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        background-color: #ff9017;
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+        min-height: 40px;
+        padding-left: 16px;
+        padding-right: 16px;
+        flex-direction: column;
+        font-size: 16px;
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+      }
+
+      .shop-now-text {
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        gap: 10px;
+      }
+
+
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="top-bar">
+          <div class="logo">  <img src="Images/logo-colored.png" alt="Brand Logo">
+          </div>
+
+          <div class="search-box">
+              <input type="text" placeholder="Search">
+              <select>
+                  <option >All category</option>
+                  <option>Electronics</option>
+                  <option>Fashion</option>
+                  <option>Home & Garden</option>
+              </select>
+              <button><i class="fas fa-search"></i> Search</button>
+          </div>
+
+          <div class="top-right">
+            
+            <div class="icon-container">
+                <i class="fas fa-user"></i>
+                <span class="head1">Profile</span>
+            </div>
+            <div class="icon-container">
+                <i class="fas fa-envelope"></i>
+                <span class="head1">Message</span>
+            </div>
+            <a href="web-detail.html" class="icon-link">
+            <div class="icon-container">
+                <i class="fas fa-heart"></i>
+                <span class="head1">Orders</span>
+            </div>
+          </a>
+        </div>
+            <a href="cart.html" class="icon-link">
+              <div class="icon-container">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="head1">My cart</span>
+              </div>
+            </a>
+             </div>
+    </div>
+
+      <hr class="separator"> 
+
+      <div class="nav-bar">
+          <div class="nav-left">
+              <a href="#">☰ All category</a>
+              <a href="#">Hot offers</a>
+              <a href="#">Gift boxes</a>
+              <a href="#">Projects</a>
+              <a href="#">Menu item</a>
+              <a href="#">Help </a> <div class="BTN" style="display: inline-block;color:#8B96A5 ; margin-right: 20PX;"><img src="Images/expand_more.png"></div> 
+             
+          </div>
+
+          <div class="nav-right">
+              <div class="dropdown">
+                  <button class="dropbtn">English, USD </button> <div class="BTN" style="display: inline-block;color:#8B96A5 ;">▼</div> 
+              </div>
+              <div class="dropdown">
+                  <button class="dropbtn">Ship to <img src="./Images/DE@2x.png"></button>
+                      <div class="BTN" style="display: inline-block;color:#8B96A5 ;">▼</div> 
+                  </button> 
+              </div>
+          </div>
+      </div>
+  </header>
+ 
+    <main class="product-detail">
+     
+
+      <!-- Main content area -->
+      <div class="main-content">
+        <!-- Breadcrumb navigation -->
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <div class="breadcrumb-item">
+            <div class="breadcrumb-text">Home</div>
+            <img
+            src="Images/product_listingpics/chevron_right.png"  alt="Arrow"
+            alt="Breadcrumb separator"
+              class="breadcrumb-arrow"
+            />
+          </div>
+          <div class="breadcrumb-item">
+            <div class="breadcrumb-text">Clothings</div>
+            <img
+            src="Images/product_listingpics/chevron_right.png"  alt="Arrow"
+            alt="Breadcrumb separator"
+              class="breadcrumb-arrow"
+            />
+          </div>
+          <div class="breadcrumb-item">
+            <div class="breadcrumb-text">Men's wear</div>
+            <img
+            src="Images/product_listingpics/chevron_right.png"  alt="Arrow"
+            alt="Breadcrumb separator"
+              class="breadcrumb-arrow"
+            />
+            <div class="breadcrumb-text">Summer clothing</div>
+          </div>
+        </nav>
+
+        <!-- Product detail section -->
+        <section class="product-container">
+          <div class="product-main">
+            <div class="product-row">
+              <div class="product-image-column">
+                <img
+                  src="Images/web-details_pics/image 34.png" alt="Product main image"
+                  class="product-image"
+                />
+              </div>
+              <div class="product-info-column">
+                <div class="product-info">
+                  <div class="stock-status">
+                    <img style="width: 20px;"
+                      src="Images/web-details_pics/Vector.png" alt="In stock icon"
+                      class="stock-icon"
+                    />
+                    <div class="stock-text">In stock</div>
+                  </div>
+                  <h1 class="product-title">
+                    Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
+                  </h1>
+                  <div class="product-ratings">
+                    <div class="rating-stars">
+                      <img
+                        src="Images/web-details_pics/rating.png" alt="Rating stars"
+                        class="stars-image"
+                      />
+                      <div class="rating-value">9.3</div>
+                    </div>
+                    <div class="reviews">
+                      <img
+                        src="Images/web-details_pics/message.png" alt="Reviews icon"
+                        class="reviews-icon"
+                      />
+                      <div class="reviews-count">32 reviews</div>
+                    </div>
+                    <div class="sold">
+                      <img
+                        src="Images/web-details_pics/shopping_basket.png"  alt="Sold icon"
+                        class="sold-icon"
+                      />
+                      <div class="sold-count">154 sold</div>
+                    </div>
+                  </div>
+                  <div class="pricing-tiers">
+                    <div class="tier-1">
+                      <div class="tier-1-price">$98.00</div>
+                      <div class="tier-1-quantity">50-100 pcs</div>
+                    </div>
+                    <div class="tier-2">
+                      <div class="tier-divider"></div>
+                      <div class="tier-2-details">
+                        <div class="tier-2-price">$90.00</div>
+                        <div class="tier-2-quantity">100-700 pcs</div>
+                      </div>
+                    </div>
+                    <div class="tier-3">
+                      <div class="tier-3-divider"></div>
+                      <div class="tier-3-details">
+                        <div class="tier-3-price">$78.00</div>
+                        <div class="tier-3-quantity">700+ pcs</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="price-negotiable">
+                    <div class="price-label">Price:</div>
+                    <div class="negotiable-text">Negotiable</div>
+                  </div>
+                  <div class="info-divider"></div>
+                  <div class="product-specs">
+                    <div class="spec-labels">
+                      <div class="type-label">Type:</div>
+                      <div class="material-label">Material:</div>
+                      <div class="design-label">Design:</div>
+                    </div>
+                    <div class="spec-values">
+                      <div class="type-value">Classic shoes</div>
+                      <div class="material-value">Plastic material</div>
+                      <div class="design-value">Modern nice</div>
+                    </div>
+                  </div>
+                  <div class="info-divider"></div>
+                </div>
+              </div>
+              <div class="supplier-column">
+                <div class="supplier-container">
+                  <div class="supplier-card">
+                    <div class="supplier-header">
+                      <img
+                        src="Images/web-details_pics/img.jpg"alt="Supplier logo"
+                        class="supplier-logo"
+                      />
+                      <div class="supplier-info">
+                        <div class="supplier-label">Supplier</div>
+                        <div class="supplier-name">Guanjoi Trading LLC</div>
+                      </div>
+                    </div>
+                    <div class="supplier-divider"></div>
+                    <div class="supplier-location">
+                      <img
+                        src="Images/web-details_pics/DE@2x.png" alt="Location icon"
+                        class="location-icon"
+                      />
+                      <div class="location-text">Germany, Berlin</div>
+                    </div>
+                    <div class="supplier-verified">
+                      <img
+                        src="Images/web-details_pics/Vector.png"   alt="Verified icon"
+                        class="verified-icon"
+                      />
+                      <div class="verified-text">Verified Seller</div>
+                    </div>
+                    <div class="supplier-shipping">
+                      <img
+                        src="Images/web-details_pics/language.png" alt="Shipping icon"
+                        class="shipping-icon"
+                      />
+                      <div class="shipping-text">Worldwide shipping</div>
+                    </div>
+                    <button class="inquiry-button">
+                      <div class="inquiry-text">Send inquiry</div>
+                    </button>
+                    <button class="profile-button">
+                      <div class="profile-text">Seller's profile</div>
+                    </button>
+                  </div>
+                  <div class="save-later">
+                    <img
+                      src="Images/web-details_pics/favorite_border.png"alt="Save icon"
+                      class="save-icon"
+                    />
+                    <div class="save-text">Save for later</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product thumbnails and specs -->
+          <div class="product-thumbnails">
+            <div class="thumbnails-row">
+              <div class="thumbnails-column">
+                <div class="thumbnail-list">
+                  <img
+                    src="Images/web-details_pics/Image (2).png"   alt="Product thumbnail 1"
+                    class="thumbnail"
+                  />
+                  <img
+                    src="Images/web-details_pics/Image (3).png"alt="Product thumbnail 2"
+                    class="thumbnail"
+                  />
+                  <img
+                    src="Images/web-details_pics/Image (4).png"  alt="Product thumbnail 3"
+                    class="thumbnail"
+                  />
+                  <img
+                    src="Images/web-details_pics/Image (5).png" alt="Product thumbnail 4"
+                    class="thumbnail"
+                  />
+                  <img
+                    src="Images/web-details_pics/Image (6).png"alt="Product thumbnail 5"
+                    class="thumbnail"
+                  />
+                  <img
+                    src="Images/web-details_pics/Image (4).png" alt="Product thumbnail 6"
+                    class="thumbnail"
+                  />
+                </div>
+              </div>
+              <div class="specs-column" style="margin-left: -22px;">
+                <div class="specs-container">
+                  <div class="specs-details">
+                    <div class="specs-labels">
+                      <div class="customization-label">Customization:</div>
+                      <div class="protection-label">Protection:</div>
+                      <div class="warranty-label">Warranty:</div>
+                    </div>
+                    <div class="specs-values">
+                      <div class="customization-value">
+                        Customized logo and design custom packages
+                      </div>
+                      <div class="protection-value">Refund Policy</div>
+                      <div class="warranty-value">2 years full warranty</div>
+                    </div>
+                  </div>
+                  <div class="specs-divider"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Product description tabs -->
+        <section class="product-tabs">
+          <div class="tabs-row">
+            <div class="tabs-column">
+              <div class="tabs-container">
+                <div class="tabs-header" role="tablist">
+                  <div
+                    class="tab-active"
+                    role="tab"
+                    aria-selected="true"
+                    tabindex="0"
+                  >
+                    Description
+                  </div>
+                  <div
+                    class="tab"
+                    role="tab"
+                    aria-selected="false"
+                    tabindex="-1"
+                  >
+                    Reviews
+                  </div>
+                  <div
+                    class="tab-shipping"
+                    role="tab"
+                    aria-selected="false"
+                    tabindex="-1"
+                  >
+                    Shipping
+                  </div>
+                  <div
+                    class="tab-seller"
+                    role="tab"
+                    aria-selected="false"
+                    tabindex="-1"
+                  >
+                    About seller
+                  </div>
+                </div>
+                <div
+                  class="tab-content"
+                  role="tabpanel"
+                  aria-labelledby="description-tab"
+                >
+                  <p class="description-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur.
+                    <span style="color: rgba(80, 80, 80, 1)">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam,
+                    </span>
+                    <br />
+                    <span style="color: rgba(80, 80, 80, 1)">
+                      Quis nostrud exercitation ullamco laboris nisi ut aliquip
+                      ex ea commodo consequat. Duis aute irure dolor in
+                      reprehenderit in voluptate velit esse cillum dolore eu
+                      fugiat nulla pariatur.
+                    </span>
+                  </p>
+                  <div class="specs-table">
+                    <div class="specs-row" >
+                      <div class="specs-label">Model</div>
+                      <div class="specs-value-container">
+                        <div class="specs-border"></div>
+                        <div class="specs-value-wrapper">
+                          <div class="specs-divider-vertical" ></div>
+                          <div class="specs-value">#8786867</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="specs-row">
+                      <div class="specs-label">Style</div>
+                      <div class="specs-value-container">
+                        <div class="specs-border"></div>
+                        <div class="specs-value-wrapper">
+                          <div class="specs-divider-vertical"></div>
+                          <div class="specs-value">Classic style</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="specs-row">
+                      <div class="specs-label">Certificate</div>
+                      <div class="specs-value-container">
+                        <div class="specs-border"></div>
+                        <div class="specs-value-wrapper">
+                          <div class="specs-divider-vertical"></div>
+                          <div class="specs-value">ISO-898921212</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="specs-row">
+                      <div class="specs-label">Size</div>
+                      <div class="specs-value-container">
+                        <div class="specs-border"></div>
+                        <div class="specs-value-wrapper">
+                          <div class="specs-divider-vertical"></div>
+                          <div class="specs-value">34mm x 450mm x 19mm</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="specs-row">
+                      <div class="specs-label">Memory</div>
+                      <div class="specs-value-container">
+                        <div class="specs-border"></div>
+                        <div class="specs-value-wrapper">
+                          <div class="specs-divider-vertical"></div>
+                          <div class="specs-value">36GB RAM</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="feature-list">
+                    <img
+                      src="Images/web-details_pics/check.png" alt="Feature icon"
+                      class="feature-icon"
+                    />
+                    <div class="feature-text">Some great feature name here</div>
+                  </div>
+                  <div class="feature-list">
+                    <img
+                    src="Images/web-details_pics/check.png" alt="Feature icon"
+                    alt="Feature icon"
+                      class="feature-icon"
+                    />
+                    <div class="feature-text">
+                      Lorem ipsum dolor sit amet, consectetur
+                    </div>
+                  </div>
+                  <div class="feature-list">
+                    <img
+                    src="Images/web-details_pics/check.png" alt="Feature icon"
+                    alt="Feature icon"
+                      class="feature-icon"
+                    />
+                    <div class="feature-text">
+                      Duis aute irure dolor in reprehenderit
+                    </div>
+                  </div>
+                  <div class="feature-list">
+                    <img
+                    src="Images/web-details_pics/check.png" alt="Feature icon"
+                    alt="Feature icon"
+                      class="feature-icon"
+                    />
+                    <div class="feature-text">Some great feature name here</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="related-column">
+              <div class="related-container">
+                <h2 class="related-title">You may like</h2>
+                <div class="related-products">
+                  <div class="related-images">
+                    <img
+                      src="Images/web-details_pics/Group 558 (2).png"alt="Related product 1"
+                      class="related-image"
+                    />
+                    <img
+                    src="Images/web-details_pics/Group 558 (1).png"alt="Related product 1"
+                    alt="Related product 2"
+                      class="related-image-2"
+                    />
+                    <img
+                      src="Images/web-details_pics/3.png" alt="Related product 3"
+                      class="related-image-2"
+                    />
+                    <img
+                      src="Images/web-details_pics/4.png" alt="Related product 4"
+                      class="related-image-2"
+                    />
+                    <img
+                      src="Images/web-details_pics/5.png"alt="Related product 5"
+                      class="related-image-2"
+                    />
+                  </div>
+                  <div class="related-details">
+
+                      Men Blazers Sets Elegant Formal
+                    
+                    <div class="related-price" style="margin-top: 5px">$7.00 - $99.50</div>
+                  <br><br>
+                      Men Shirt Sleeve Polo Contrast
+                    </h3>
+                    <div class="related-price" style="margin-top: 5px">$7.00 - $99.50</div> <br>
+                      Apple Watch Series Space Gray
+                  
+                    <div class="related-price" style="margin-top: 5px">$7.00 - $99.50</div>
+                    <br><br>
+                    Basketball Crew Socks Long Stuff
+                    </h3>
+                    <div class="related-price" style="margin-top: 5px">$7.00 - $99.50</div>
+                    <br><br>
+                    New Summer Men's castrol T-Shirts
+                    </h3>
+                    <div class="related-price">$7.00 - $99.50</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Related products section -->
+        <section class="related-products-section">
+          <h2 class="related-section-title">Related products</h2>
+          <div class="related-products-grid">
+            <article class="product-card">
+              <div class="product-image-container">
+                <div class="product-image-wrapper">
+                  <img
+                    src="Images/web-details_pics/6.png" alt="Related product"
+                    class="product-card-image"
+                  />
+                </div>
+              </div>
+              <h3 class="product-card-title">Xiaomi Redmi 8 Original</h3>
+              <div class="product-card-price">$32.00-$40.00</div>
+            </article>
+            <article class="product-card">
+              <div class="product-image-container">
+                <div
+                  class="product-image-wrapper"
+                  style="padding-left: 17px; padding-right: 17px"
+                >
+                  <img
+                    src="Images/web-details_pics/8.png" alt="Related product"
+                    class="product-card-image"
+                    style="width: 113px; aspect-ratio: 0.84"
+                  />
+                </div>
+              </div>
+              <h3 class="product-card-title">Xiaomi Redmi 8 Original</h3>
+              <div class="product-card-price">$32.00-$40.00</div>
+            </article>
+            <article class="product-card">
+              <div class="product-image-container">
+                <div
+                  class="product-image-wrapper"
+                  style="padding-left: 3px; padding-right: 3px"
+                >
+                  <img
+                  src="Images/web-details_pics/9.png" alt="Related product"
+                  alt="Related product"
+                    class="product-card-image"
+                    style="width: 150px; aspect-ratio: 1"
+                  />
+                </div>
+              </div>
+              <h3 class="product-card-title">Xiaomi Redmi 8 Original</h3>
+              <div class="product-card-price">$32.00-$40.00</div>
+            </article>
+            <article class="product-card">
+              <div class="product-image-container">
+                <div
+                  class="product-image-wrapper"
+                  style="padding-left: 17px; padding-right: 17px"
+                >
+                  <img
+                  src="Images/web-details_pics/4.png" alt="Related product"
+                  alt="Related product"
+                    class="product-card-image"
+                    style="width: 114px; aspect-ratio: 0.97"
+                  />
+                </div>
+              </div>
+              <h3 class="product-card-title">Xiaomi Redmi 8 Original</h3>
+              <div class="product-card-price">$32.00-$40.00</div>
+            </article>
+            <article class="product-card">
+              <div
+                class="product-image-container"
+                style="padding-left: 13px; padding-right: 13px"
+              >
+                <img
+                src="Images/web-details_pics/10.png" alt="Related product"
+                alt="Related product"
+                  class="product-card-image"
+                  style="width: 143px; aspect-ratio: 0.99"
+                />
+              </div>
+              <h3 class="product-card-title">Xiaomi Redmi 8 Original</h3>
+              <div class="product-card-price">$32.00-$40.00</div>
+            </article>
+            <article class="product-card">
+              <img
+              src="Images/web-details_pics/7.png" alt="Related product"
+              alt="Related product"
+                class="product-card-image"
+                style="width: 100%; aspect-ratio: 1; border-radius: 0"
+              />
+              <h3 class="product-card-title">Xiaomi Redmi 8 Original</h3>
+              <div class="product-card-price">$32.00-$40.00</div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Discount banner -->
+        <section class="discount-banner" style="margin-bottom: 30px;">
+          <div class="banner-content" >
+            <img
+              src="Images/web-details_pics/Rectangle 177 (1).png" alt="Discount background"
+              class="banner-bg"
+            />
+            <h2 class="banner-title">Super discount on more than 100 USD</h2>
+            <p class="banner-description">
+              Have you ever finally just write dummy info
+            </p>
+          </div>
+         
+          <button class="shop-now-button">
+            <a href="cart.html">
+         
+            <div class="shop-now-text">Shop now</div> </a>
+          </button>
+        </section>
+      </div>
+      </main> <br>
+    
+    <div class="footer-links">
+                
+      <div class="footer-column">
+          <div class="logo1">
+              <img src="Images/logo-colored.png" style="margin-top: 15px;" alt="Brand Logo">
+          </div>
+          <p>Best information about the company goes here.</p>
+
+          <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+         
+          </div>
+      </div>
+
+      <div class="footer-column">
+          <h3>About</h3>
+          <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Find store</a></li>
+              <li><a href="#">Categories</a></li>
+              <li><a href="#">Blogs</a></li>
+          </ul>
+      </div>
+
+      <div class="footer-column">
+          <h3>Partnership</h3>
+          <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Find store</a></li>
+              <li><a href="#">Categories</a></li>
+              <li><a href="#">Blogs</a></li>
+          </ul>
+      </div>
+
+      <div class="footer-column">
+          <h3>Information</h3>
+          <ul>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Money Refund</a></li>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">Contact us</a></li>
+          </ul>
+      </div>
+
+      <div class="footer-column">
+          <h3>For Users</h3>
+          <ul>
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Register</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">My Orders</a></li>
+          </ul>
+      </div>
+
+      <div class="app-buttons">
+              <h3>Get app</h3>
+        
+          <a href="#">
+              <img class="btn-bg" src="Images/◼️ Background.png" alt="App Store Button Background">
+              <img class="btn-text" src="Images/Subtract.png" alt="App Store Text">
+          </a>
+          <a href="#">
+              <img class="btn-bg" src="Images/◼️ Background.png" alt="Google Play Button Background">
+              <img class="btn-text" src="Images/Logo.png" alt="Google Play Text">
+          </a>
+      </div>
+  </div>            
+  <div class="copyright">
+      <p style="margin-left: 70px;">© 2023 Ecommerce.</p>
+      <div class="copyright1" style="margin-left: 1280px;"></div>
+      <img src="./Images/icon.png">  <p class="dropbtn" style="background-color: #DEE2E7;" >English </p>
+      <div class="BTN" style="display: inline-block;color:#8B96A5;margin-right: 160px ; "><img src="Images/expand_more.png"></div> 
+     </button> </div>
+         </div>
+     
+  </div>
+</div>
+</footer>
+
+     
+  </body>
+
+    <script>
+      (() => {
+        const state = {};
+
+        let context = null;
+        let nodesToDestroy = [];
+        let pendingUpdate = false;
+
+        function destroyAnyNodes() {
+          // destroy current view template refs before rendering again
+          nodesToDestroy.forEach((el) => el.remove());
+          nodesToDestroy = [];
+        }
+
+        // Function to update data bindings and loops
+        // call update() when you mutate state and need the updates to reflect
+        // in the dom
+        function update() {
+          if (pendingUpdate === true) {
+            return;
+          }
+          pendingUpdate = true;
+
+          document.querySelectorAll("[data-el='div-1']").forEach((el) => {
+            el.setAttribute("space", 24);
+          });
+
+          document.querySelectorAll("[data-el='div-2']").forEach((el) => {
+            el.setAttribute("space", 21);
+          });
+
+          document.querySelectorAll("[data-el='div-3']").forEach((el) => {
+            el.setAttribute("space", 20);
+          });
+
+          destroyAnyNodes();
+
+          pendingUpdate = false;
+        }
+
+        // Update with initial state on first load
+        update();
+      })();
+    </script>
+  </body>
+</html>
