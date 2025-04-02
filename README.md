@@ -1,6 +1,7 @@
 # E-Commerce Website  
 
 This project is a simple e-commerce website built using HTML, CSS, and JavaScript. It includes the following pages:  
+Note: This is a static website. 
 
 ## Features  
 - **Home Page** – Displays featured products and categories.  
